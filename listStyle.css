@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+.list {
+    display: flex;
+    margin: 0 0 2rem;
+}
+
+
+#priority-select {
+    color: #999;
+}
+
+#priority-select:valid {
+    color: #000;
+}
+
+.input-comment {
+    width: 1rem;
+}
+
+.input-deadline {
+    width: 1rem;
+}
+
+.priority-select {
+    width: 1rem;
+}
+
+.taskName {
+    width: 1rem;
+}
+
+.task-list{
+
+}
+.task-list-head{
+
+}
+.task-list-body{
+
+}

@@ -1,14 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./listStyle.css" />
     <title>ToDoリスト</title>
-</head>
-<body>
-    <h2>タスクを書く。</h2>
-    <input type="text" id="input-text">
-    <button class="button">OK</button>
-    
-</body>
+  </head>
+  <body>
+    <h2>todoリスト</h2>
+    <section class="list">
+      <form id="task-form">
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <input
+                  type="text"
+                  id="taskName"
+                  placeholder="タスク名"
+                  required
+                />
+              </td>
+              <td>
+                <select name="priority" id="priority-select" required>
+                  <option value="" disabled selected>--優先度--</option>
+                  <option value="low">低</option>
+                  <option value="medium">中</option>
+                  <option value="high">高</option>
+                </select>
+              </td>
+              <td>
+                <input
+                  type="input-deadline"
+                  id="deadline"
+                  placeholder="期日"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="input-comment"
+                  id="comment"
+                  placeholder="コメント"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button id="button">リストに追加</button>
+      </form>
+    </section>
+
+    <!--タスクリスト-->
+    <table id="task-list">
+      <thead id="task-list-head">
+        <tr>
+          <th>タスク名</th>
+          <th>優先度</th>
+          <th>期日</th>
+          <th>コメント</th>
+        </tr>
+      </thead>
+      <tbody id="task-list-body"></tbody>
+    </table>
+
+    <script src="./listButton.js"></script>
+  </body>
 </html>
