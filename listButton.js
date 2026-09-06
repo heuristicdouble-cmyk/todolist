@@ -4,6 +4,62 @@ const taskListBody = document.querySelector("#task-list-body");
 //ローカルデータから保存済みのタスクデータを取得する。もしなければ空配列
 let tasks = JSON.parse(localStorage.getItem("todoList")) || [];
 
+function renderTask(task, index) {
+  const tr = document.createElement("tr");
+
+  if (task.completed) {
+    tr.classList.add("completed");
+  }
+
+  const tdcheckbox = document.createElement("td");
+  const tdtaskName = document.createElement("td");
+  const tdpriority = document.createElement("td");
+  const tddeadline = document.createElement("td");
+  const tdcomment = document.createElement("td");
+
+  // checkboxを追加する
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = task.completed;
+
+  checkbox.addEventListener("change", () => {
+    tr.classList.toggle("completed", checkbox.checked);
+    tasks[index].completed = checkbox.checked;
+    localStorage.setItem("todoList", JSON.stringify(tasks));
+  });
+
+  tdcheckbox.appendChild(checkbox);
+
+  tdtaskName.textContent = task.taskName;
+  tdpriority.textContent =
+    task.priority === "low"
+      ? "低"
+      : task.priority === "medium"
+        ? "中"
+        : "高";
+  tddeadline.textContent = task.deadline;
+  tdcomment.textContent = task.comment;
+
+  tdpriority.classList.add(`priority-${task.priority}`);
+
+  tr.appendChild(tdcheckbox);
+  tr.appendChild(tdtaskName);
+  tr.appendChild(tdpriority);
+  tr.appendChild(tddeadline);
+  tr.appendChild(tdcomment);
+
+  taskListBody.appendChild(tr);
+}
+
+//ページ読み込み時に保存されている全タスクを描画する
+function loadTasks() {
+  taskListBody.innerHTML = ""; // 描画前にテーブルをリセット
+  tasks.forEach((task, index) => renderTask(task, index));
+}
+
+// 初期実行
+loadTasks();
+
 form.addEventListener("submit", (event) => {
   //関数実行後にページをロードしない
   event.preventDefault();
@@ -19,43 +75,18 @@ form.addEventListener("submit", (event) => {
   console.log(deadline.value);
   console.log(comment.value);
 
-  const tr = document.createElement("tr");
+  const newTask = {
+    taskName: taskName.value,
+    priority: priority_select.value,
+    deadline: deadline.value,
+    comment: comment.value,
+    completed: false,
+  };
 
-  const tdcheckbox = document.createElement("td");
-  const tdtaskName = document.createElement("td");
-  const tdpriority = document.createElement("td");
-  const tddeadline = document.createElement("td");
-  const tdcomment = document.createElement("td");
+  tasks.push(newTask);
+  localStorage.setItem("todoList", JSON.stringify(tasks));
 
-  // checkboxを追加する
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-
-  checkbox.addEventListener("change", () => {
-    tr.classList.toggle("completed", checkbox.checked);
-  });
-
-  tdcheckbox.appendChild(checkbox);
-
-  tdtaskName.textContent = taskName.value;
-  tdpriority.textContent =
-    priority_select.value === "low"
-      ? "低"
-      : priority_select.value === "medium"
-        ? "中"
-        : "高";
-  tddeadline.textContent = deadline.value;
-  tdcomment.textContent = comment.value;
-
-  tdpriority.classList.add(`priority-${priority_select.value}`);
-
-  tr.appendChild(tdcheckbox);
-  tr.appendChild(tdtaskName);
-  tr.appendChild(tdpriority);
-  tr.appendChild(tddeadline);
-  tr.appendChild(tdcomment);
-
-  taskListBody.appendChild(tr);
+  loadTasks();
 
   // 入力欄をリセット
   form.reset();
