@@ -7,23 +7,27 @@
     <title>ToDoリスト</title>
   </head>
   <body>
-    <h2>todoリスト</h2>
-    <section class="list">
-      <form id="task-form">
+    <h2>
+      todoリスト
+      <!-- <button class="button-bw">反転</button> -->
+    </h2>
+    <!--タスクフォーム-->
+    <form id="task-form">
+      <section class="list">
         <table>
           <tbody>
             <tr>
               <td>
                 <input
                   type="text"
-                  id="taskName"
+                  class="input-taskName"
                   placeholder="タスク名"
                   required
                 />
               </td>
               <td>
-                <select name="priority" id="priority-select" required>
-                  <option value="" disabled selected>--優先度--</option>
+                <select name="priority" class="priority-select" required>
+                  <option value="" disabled selected>--緊急度--</option>
                   <option value="low">低</option>
                   <option value="medium">中</option>
                   <option value="high">高</option>
@@ -31,36 +35,38 @@
               </td>
               <td>
                 <input
-                  type="input-deadline"
-                  id="deadline"
+                  type="text"
+                  class="input-deadline"
                   placeholder="期日"
                   required
                 />
               </td>
               <td>
                 <input
-                  type="input-comment"
-                  id="comment"
+                  type="text"
+                  class="input-comment"
                   placeholder="コメント"
                 />
               </td>
             </tr>
           </tbody>
         </table>
-        <button id="button">リストに追加</button>
-      </form>
-    </section>
+        <button class="button">リストに追加</button>
+      </section>
+    </form>
 
     <!--タスクリスト-->
-    <table id="task-list">
-      <thead id="task-list-head">
+    <table class="task-list" border="1">
+      <thead class="task-list-head">
         <tr>
-          <th>タスク名</th>
-          <th>優先度</th>
-          <th>期日</th>
-          <th>コメント</th>
+          <th style="width: 1rem"></th>
+          <th style="width: 20rem">タスク名</th>
+          <th style="width: 5rem">緊急度</th>
+          <th style="width: 5rem">期日</th>
+          <th style="width: 30rem">コメント</th>
         </tr>
       </thead>
+      <!--ユーザー入力分の表示リスト-->
       <tbody id="task-list-body"></tbody>
     </table>
 
