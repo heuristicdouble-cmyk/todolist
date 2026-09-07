@@ -32,11 +32,7 @@ function renderTask(task, index) {
 
   tdtaskName.textContent = task.taskName;
   tdpriority.textContent =
-    task.priority === "low"
-      ? "低"
-      : task.priority === "medium"
-        ? "中"
-        : "高";
+    task.priority === "low" ? "低" : task.priority === "medium" ? "中" : "高";
   tddeadline.textContent = task.deadline;
   tdcomment.textContent = task.comment;
 
@@ -92,8 +88,16 @@ form.addEventListener("submit", (event) => {
   form.reset();
 });
 
-const button = document.querySelector(".button-bw");
+const buttonClearCompleted = document.querySelector(".button-clear-completed");
 
-button.addEventListener("click", () => {
+buttonClearCompleted.addEventListener("click", () => {
+  tasks = tasks.filter(task => !task.completed);  //未完了タスクはtrueとなって残留する
+  localStorage.setItem("todoList", JSON.stringify(tasks));
+  loadTasks();
+});
+
+const buttonReverse = document.querySelector(".button-bw");
+
+buttonReverse.addEventListener("click", () => {
   document.body.classList.toggle("reverse");
 });
