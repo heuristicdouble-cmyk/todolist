@@ -9,7 +9,7 @@
   <body>
     <h2>
       todoリスト
-      <button class="button-clear-completed">完了済みタスクを消去</button>
+      <button class="button-clear-completed">チェックしたタスクを消去</button>
       <!-- <button class="button-bw">反転</button> -->
     </h2>
     <!--タスクフォーム-->
@@ -25,14 +25,6 @@
                   placeholder="タスク名"
                   required
                 />
-              </td>
-              <td>
-                <select name="priority" class="priority-select" required>
-                  <option value="" disabled selected>--緊急度--</option>
-                  <option value="low">低</option>
-                  <option value="medium">中</option>
-                  <option value="high">高</option>
-                </select>
               </td>
               <td>
                 <input
@@ -62,7 +54,7 @@
         <tr>
           <th style="width: 1rem"></th>
           <th style="width: 20rem">タスク名</th>
-          <th style="width: 5rem">緊急度</th>
+          <th style="width: 7rem">ステータス</th>
           <th style="width: 5rem">期日</th>
           <th style="width: 30rem">コメント</th>
         </tr>

@@ -22,18 +22,8 @@ h2 {
     gap: 0.5rem;
 }
 
-.priority-select {
-    color: #999;
-}
-
-.priority-select:valid {
-    color: #000;
-}
-
-
 .input-deadline,
 .input-comment,
-.priority-select,
 .input-taskName {
     width: auto;
 }
@@ -51,7 +41,7 @@ h2 {
     background-color: #f1f2fdf7;
 }
 
-/* 緊急度の表示をセンター配置 */
+/* ステータスの表示をセンター配置 */
 #task-list-body td:nth-child(3) {
     text-align: center;
 }
@@ -73,17 +63,36 @@ h2 {
     background-color: transparent;
 }
 
-.priority-low {
-    background-color: #67e6f7;
-    color: #000;
+#task-list-body tr.completed select {
+    background-color: transparent; 
+    color: #2b2b2b;                 
+    border-color: #888888;         
 }
 
-.priority-medium {
-    background-color: #f0e67a;
-    color: #000;
+select.status-unread {
+    background-color: #ff4d4f;
+    color: black;
 }
 
-.priority-high {
-    background-color: #eb8292;
-    color: #000;
+select.status-pending {
+    background-color: #ffec3d;
+    color: black;
+}
+
+select.status-in-progress {
+    background-color: #1890ff;
+    color: black;
+}
+
+select.status-completed {
+    background-color: #52c41a;
+    color: black;
+}
+
+#task-list-body select {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
 }
