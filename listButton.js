@@ -31,10 +31,10 @@ function renderTask(task, index) {
   // status選択ボックスを追加する
   const statusSelect = document.createElement("select");
   const statusOptions = [
-    { value: "unread", text: "未完了", className: "status-unread" },
-    { value: "pending", text: "保留", className: "status-pending" },
-    { value: "in-progress", text: "進行中", className: "status-in-progress" },
-    { value: "completed", text: "完了", className: "status-completed" },
+    { value: "unread", text: "uncompleted", className: "status-unread" },
+    { value: "pending", text: "in pending", className: "status-pending" },
+    { value: "in-progress", text: "in progress", className: "status-in-progress" },
+    { value: "completed", text: "completed", className: "status-completed" },
   ];
 
   statusOptions.forEach((optionData) => {

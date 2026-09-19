@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./listStyle.css" />
-    <title>ToDoリスト</title>
+    <title>ToDoList</title>
   </head>
   <body>
     <h2>
-      todoリスト
-      <button class="button-clear-completed">チェックしたタスクを消去</button>
-      <!-- <button class="button-bw">反転</button> -->
+      todo list
+      <button class="button-clear-completed">Delete item checked</button>
+      <button class="button-bw">reverse</button>
     </h2>
     <!--タスクフォーム-->
     <form id="task-form">
@@ -22,7 +22,7 @@
                 <input
                   type="text"
                   class="input-taskName"
-                  placeholder="タスク名"
+                  placeholder="task name"
                   required
                 />
               </td>
@@ -30,7 +30,7 @@
                 <input
                   type="text"
                   class="input-deadline"
-                  placeholder="期日"
+                  placeholder="deadline"
                   required
                 />
               </td>
@@ -38,13 +38,13 @@
                 <input
                   type="text"
                   class="input-comment"
-                  placeholder="コメント"
+                  placeholder="comment"
                 />
               </td>
             </tr>
           </tbody>
         </table>
-        <button class="button">リストに追加</button>
+        <button class="button">add list</button>
       </section>
     </form>
 
@@ -53,10 +53,10 @@
       <thead class="task-list-head">
         <tr>
           <th style="width: 1rem"></th>
-          <th style="width: 20rem">タスク名</th>
-          <th style="width: 7rem">ステータス</th>
-          <th style="width: 5rem">期日</th>
-          <th style="width: 30rem">コメント</th>
+          <th style="width: 20rem">task name</th>
+          <th style="width: 9rem">status</th>
+          <th style="width: 5rem">deadline</th>
+          <th style="width: 30rem">comment</th>
         </tr>
       </thead>
       <!--ユーザー入力分の表示リスト-->
