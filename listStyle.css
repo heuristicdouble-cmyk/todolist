@@ -748,3 +748,222 @@ body.reverse #task-list-body tr.completed select {
         padding: 10px 7px;
     }
 }
+
+/* ========================================
+   Smartphone
+   768px以下
+======================================== */
+
+@media (max-width: 768px) {
+
+  /* ---------- ページ全体 ---------- */
+
+  body {
+    padding: 24px 14px;
+  }
+
+
+  /* ---------- タイトル ---------- */
+
+  h2 {
+    width: 100%;
+    margin-bottom: 20px;
+
+    font-size: 22px;
+
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+
+  /* ---------- 上部ボタン ---------- */
+
+  .button-clear-completed,
+  .button-bw {
+    padding: 8px 12px;
+
+    font-size: 11px;
+  }
+
+  .button-clear-completed {
+    margin-left: 0;
+  }
+
+
+  /* ========================================
+     入力フォーム
+  ======================================== */
+
+  .list {
+    display: block;
+
+    width: 100%;
+
+    padding: 16px;
+
+    border-radius: 12px;
+  }
+
+
+  /* PCではtableだが、
+     スマホでは縦並びに変更 */
+
+  .list table,
+  .list tbody,
+  .list tr,
+  .list td {
+    display: block;
+
+    width: 100%;
+  }
+
+  .list table {
+    border-spacing: 0;
+  }
+
+  .list td {
+    margin-bottom: 10px;
+  }
+
+
+  /* ---------- 入力欄 ---------- */
+
+  .input-taskName,
+  .input-deadline,
+  .input-comment {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    font-size: 16px;
+  }
+
+
+  /* ---------- Addボタン ---------- */
+
+  .button {
+    width: 100%;
+
+    margin-top: 5px;
+    padding: 13px;
+
+    font-size: 14px;
+  }
+
+
+  /* ========================================
+     Task table
+  ======================================== */
+
+  /*
+    テーブルの内容を無理やり縮めず、
+    スマホでは横スクロールさせる
+  */
+
+  .task-list {
+    display: block;
+
+    width: 100%;
+    min-width: 700px;
+
+    overflow-x: auto;
+
+    border-radius: 12px;
+  }
+
+
+  /* ---------- ヘッダー ---------- */
+
+  .task-list-head th {
+    padding: 12px 10px;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+  }
+
+
+  /* ---------- データ ---------- */
+
+  #task-list-body td {
+    padding: 13px 10px;
+
+    font-size: 12px;
+  }
+
+
+  /* task name */
+
+  .task-list th:nth-child(2) {
+    width: 180px !important;
+  }
+
+
+  /* status */
+
+  .task-list th:nth-child(3) {
+    width: 150px !important;
+  }
+
+
+  /* deadline */
+
+  .task-list th:nth-child(4) {
+    width: 120px !important;
+  }
+
+
+  /* comment */
+
+  .task-list th:nth-child(5) {
+    width: 250px !important;
+  }
+
+
+  /* ---------- Status select ---------- */
+
+  #task-list-body select {
+    width: 125px;
+    max-width: 125px;
+
+    padding: 6px 8px;
+
+    font-size: 11px;
+  }
+
+
+  /* ---------- checkbox ---------- */
+
+  #task-list-body input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+
+/* ========================================
+   Very small smartphone
+   iPhone SE等
+======================================== */
+
+@media (max-width: 400px) {
+
+  body {
+    padding: 18px 10px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .list {
+    padding: 13px;
+  }
+
+  .button-clear-completed,
+  .button-bw {
+    font-size: 10px;
+
+    padding: 7px 9px;
+  }
+}
