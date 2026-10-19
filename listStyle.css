@@ -1,819 +1,416 @@
 @charset "utf-8";
 
-/* ========================================
-   1. Base
-======================================== */
+/* Theme */
+:root {
+  --page: #fff;
+  --surface: #fff;
+  --text: #10263a;
+  --line: #dce5ed;
+  --navy: #103a5a;
+  --navy-hover: #082a45;
+  --header-a: #092b47;
+  --header-b: #164765;
+  --input-border: #aebfce;
+  --row-hover: #f2f7fb;
+  --checked: #a6adb5;
+  --checked-hover: #959da6;
+  --focus: #164d75;
+  --muted: #657f95;
+}
+
+body.reverse {
+  --page: #0b141d;
+  --surface: #172936;
+  --text: #cbd7df;
+  --line: #385368;
+  --navy: #668ba6;
+  --navy-hover: #789db7;
+  --header-a: #142f45;
+  --header-b: #244b68;
+  --input-border: #40586b;
+  --row-hover: #20394a;
+  --checked: #505b66;
+  --checked-hover: #5d6975;
+  --focus: #8aacc4;
+  --muted: #8093a2;
+}
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    padding: 60px 8%;
-
-    background:
-        radial-gradient(circle at top left, #dce8f3 0, transparent 35%),
-        linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
-
-    color: #263648;
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Noto Sans JP",
-        sans-serif;
-
-    transition:
-        background 0.35s ease,
-        color 0.35s ease;
+  margin: 0;
+  min-height: 100vh;
+  padding: 60px 8%;
+  background: var(--page);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
 }
 
-
-/* ========================================
-   2. Title
-======================================== */
+h2,
+#task-form,
+.task-list {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 h2 {
-    width: 100%;
-    max-width: 1100px;
-
-    margin: 0 auto 28px;
-    padding-bottom: 16px;
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    color: #18324a;
-
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-
-    border-bottom: 2px solid #d9c5a5;
-
-    transition:
-        color 0.3s ease,
-        border-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #bda17a;
+  color: var(--text);
+  font-size: 28px;
+  letter-spacing: .04em;
 }
 
-
-/* ========================================
-   3. Input form
-======================================== */
-
 #task-form {
-    max-width: 1100px;
-    margin: 0 auto 40px;
+  margin-bottom: 40px;
 }
 
 .list {
-    display: flex;
-    align-items: center;
-
-    gap: 14px;
-    padding: 20px;
-
-    background: rgba(255, 255, 255, 0.82);
-
-    border: 1px solid #dbe5ee;
-    border-radius: 16px;
-
-    box-shadow:
-        0 8px 30px rgba(39, 65, 89, 0.08),
-        0 2px 6px rgba(39, 65, 89, 0.04);
-
-    backdrop-filter: blur(10px);
-
-    transition:
-        background-color 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--input-border);
+  border-radius: 16px;
+  box-shadow: 0 9px 30px rgba(8, 38, 64, .12);
 }
 
 .list table {
-    flex: 1;
-
-    width: 100%;
-
-    border-collapse: separate;
-    border-spacing: 8px 0;
+  flex: 1;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 8px 0;
 }
 
 .list td {
-    padding: 0;
+  padding: 0;
 }
 
-
-/* ========================================
-   4. Input
-======================================== */
-
-.input-taskName,
-.input-deadline,
-.input-comment {
-    width: 100%;
-    min-width: 0;
-
-    padding: 12px 14px;
-
-    background-color: #f8fafc;
-    color: #263648;
-
-    border: 1px solid #ccd9e5;
-    border-radius: 9px;
-
-    font-size: 14px;
-
-    outline: none;
-
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+:is(.input-taskName, .input-deadline, .input-comment) {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 14px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--input-border);
+  border-radius: 9px;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
 }
 
-.input-taskName::placeholder,
-.input-deadline::placeholder,
-.input-comment::placeholder {
-    color: #94a4b4;
+:is(.input-taskName, .input-deadline, .input-comment)::placeholder {
+  color: var(--muted);
 }
 
-.input-taskName:focus,
-.input-deadline:focus,
-.input-comment:focus {
-    background-color: #ffffff;
-
-    border-color: #6f91ad;
-
-    box-shadow:
-        0 0 0 3px rgba(111, 145, 173, 0.15);
+:is(.input-taskName, .input-deadline, .input-comment):focus {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px rgba(14, 61, 97, .13);
 }
 
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
 
-/* ========================================
-   5. Add button
-======================================== */
+.button,
+.button-clear-completed,
+.button-bw {
+  border-radius: 9px;
+  font-weight: 600;
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
 
 .button {
-    flex-shrink: 0;
-
-    padding: 12px 22px;
-
-    background-color: #294c67;
-    color: #ffffff;
-
-    border: none;
-    border-radius: 9px;
-
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 4px 12px rgba(41, 76, 103, 0.18);
-
-    transition:
-        transform 0.15s ease,
-        background-color 0.2s ease,
-        box-shadow 0.2s ease;
+  flex-shrink: 0;
+  padding: 12px 22px;
+  background: var(--navy);
+  color: #fff;
+  border: 0;
+  font-size: 14px;
+  box-shadow: 0 4px 14px rgba(7, 34, 56, .22);
 }
 
 .button:hover {
-    background-color: #1f3e57;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 7px 18px rgba(41, 76, 103, 0.22);
+  background: var(--navy-hover);
+  transform: translateY(-2px);
 }
 
 .button:active {
-    transform: translateY(0);
+  transform: none;
 }
 
-
-/* ========================================
-   6. Clear completed button
-======================================== */
-
 .button-clear-completed {
-    margin-left: auto;
-
-    padding: 9px 16px;
-
-    background-color: #eee3d2;
-    color: #685844;
-
-    border: 1px solid #dac7a9;
-    border-radius: 8px;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        transform 0.15s ease,
-        box-shadow 0.2s ease;
+  margin-left: auto;
+  padding: 9px 16px;
+  background: #d8c2a1;
+  color: #493b2b;
+  border: 1px solid #b79b73;
+  font-size: 13px;
 }
 
 .button-clear-completed:hover {
-    background-color: #e4d4bc;
-
-    transform: translateY(-1px);
-
-    box-shadow:
-        0 4px 10px rgba(110, 88, 58, 0.12);
+  background: #c7ac86;
+  transform: translateY(-1px);
 }
 
-
-/* ========================================
-   7. Black / White button
-======================================== */
-
 .button-bw {
-    padding: 9px 15px;
-
-    background-color: #ffffff;
-    color: #294c67;
-
-    border: 1px solid #b9cad8;
-    border-radius: 8px;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 2px 7px rgba(39, 65, 89, 0.08);
-
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.15s ease,
-        box-shadow 0.2s ease;
+  padding: 9px 15px;
+  background: var(--surface);
+  color: var(--navy);
+  border: 1px solid var(--input-border);
+  font-size: 13px;
 }
 
 .button-bw:hover {
-    background-color: #edf3f7;
-
-    transform: translateY(-1px);
-
-    box-shadow:
-        0 4px 10px rgba(39, 65, 89, 0.12);
+  background: var(--row-hover);
+  transform: translateY(-1px);
 }
-
-
-/* ========================================
-   8. Task table
-======================================== */
 
 .task-list {
-    width: 100%;
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    border-collapse: separate;
-    border-spacing: 0;
-
-    overflow: hidden;
-
-    background-color: rgba(255, 255, 255, 0.9);
-
-    border: 1px solid #dbe4ec !important;
-    border-radius: 14px;
-
-    box-shadow:
-        0 10px 30px rgba(35, 60, 82, 0.07);
-
-    table-layout: fixed;
-
-    transition:
-        background-color 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--input-border);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(7, 34, 56, .10);
 }
 
-
-/* ========================================
-   9. Table header
-======================================== */
-
 .task-list-head {
-    background:
-        linear-gradient(135deg, #294c67, #3e6683);
-
-    color: #ffffff;
+  background: linear-gradient(135deg, var(--header-a), var(--header-b));
+  color: #fff;
 }
 
 .task-list-head th {
-    padding: 15px 14px;
-
-    border: none;
-
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-
-    text-align: left;
+  padding: 15px 14px;
+  border: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-align: left;
 }
 
-.task-list-head th:first-child {
-    text-align: center;
+.task-list-head th:first-child,
+#task-list-body td:first-child {
+  text-align: center;
 }
-
-
-/* ========================================
-   10. Table body
-======================================== */
 
 #task-list-body td {
-    padding: 15px 14px;
-
-    background-color: rgba(255, 255, 255, 0.7);
-
-    border: none;
-    border-bottom: 1px solid #e7edf2;
-
-    color: #405164;
-
-    font-size: 14px;
-
-    word-break: break-word;
-
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
+  padding: 15px 14px;
+  background: var(--surface);
+  color: var(--text);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  word-break: break-word;
 }
 
 #task-list-body tr:last-child td {
-    border-bottom: none;
+  border-bottom: 0;
 }
 
 #task-list-body tr:hover td {
-    background-color: #f2f6f9;
-}
-
-
-/* ========================================
-   11. Checkbox
-======================================== */
-
-#task-list-body td:nth-child(1) {
-    text-align: center;
+  background: var(--row-hover);
 }
 
 #task-list-body input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-
-    accent-color: #527894;
-
-    cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--focus);
+  cursor: pointer;
 }
 
-
-/* ========================================
-   12. Status
-======================================== */
-
 #task-list-body td:nth-child(3) {
-    text-align: center;
+  text-align: center;
 }
 
 #task-list-body select {
-    width: 130px;
-    max-width: 130px;
-
-    padding: 7px 8px;
-
-    border: 1px solid transparent;
-    border-radius: 20px;
-
-    font-size: 12px;
-    font-weight: 600;
-
-    text-align: center;
-
-    outline: none;
-    cursor: pointer;
-
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.2s ease,
-        background-color 0.3s ease,
-        color 0.3s ease;
+  width: 130px;
+  max-width: 100%;
+  padding: 7px 8px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  transition: transform .15s, box-shadow .2s;
 }
 
 #task-list-body select:hover {
-    transform: translateY(-1px);
-
-    box-shadow:
-        0 3px 8px rgba(39, 65, 89, 0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(39, 65, 89, .12);
 }
 
-
-/* 未完了 */
-
-select.status-unread {
-    background-color: #e7edf2;
-    color: #506274;
-
-    border-color: #d1dce5;
+#task-list-body select.status-unread {
+  background: #b63b45;
+  border-color: #b63b45;
 }
 
-
-/* 保留 */
-
-select.status-pending {
-    background-color: #eee3d2;
-    color: #766044;
-
-    border-color: #dfcbaa;
+#task-list-body select.status-pending {
+  background: #a17b45;
+  border-color: #a17b45;
 }
 
-
-/* 進行中 */
-
-select.status-in-progress {
-    background-color: #dceaf3;
-    color: #315f7c;
-
-    border-color: #bdd5e5;
+#task-list-body select.status-in-progress {
+  background: #17618a;
+  border-color: #17618a;
 }
 
-
-/* 完了 */
-
-select.status-completed {
-    background-color: #dcebe7;
-    color: #37665b;
-
-    border-color: #bdd8d0;
+#task-list-body select.status-completed {
+  background: #28775b;
+  border-color: #28775b;
 }
 
+#task-list-body select option {
+  background: #fff;
+  color: #1d3042;
+  font-weight: 500;
+}
 
-/* ========================================
-   13. Completed task
-======================================== */
+/* The native dropdown highlight may still be controlled by the OS/browser. */
+#task-list-body .task-edit-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 9px 8px;
+  background: transparent;
+  color: inherit;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  font: inherit;
+  font-size: 14px;
+}
 
+#task-list-body .task-edit-input:hover {
+  background: rgba(111, 145, 173, .08);
+}
+
+#task-list-body .task-edit-input:focus {
+  background: rgba(111, 145, 173, .06);
+  border-bottom-color: var(--focus);
+}
+
+/* Deadline: enough space for the date and calendar icon */
+.task-list th:nth-child(4) {
+  width: 12rem !important;
+}
+
+#task-list-body td:nth-child(4) {
+  min-width: 12rem;
+  padding: 10px 12px;
+}
+
+#task-list-body td:nth-child(4) input[type="date"] {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 4px;
+  white-space: nowrap;
+  cursor: pointer;
+  color-scheme: light;
+}
+
+body.reverse input[type="date"] {
+  color-scheme: dark;
+}
+
+/* Checked rows must override both hover and theme row colors. */
 #task-list-body tr.completed td {
-    background-color: #f1f3f4;
-
-    color: #9aa4ad;
-
-    text-decoration: line-through;
+  background: var(--checked);
+  color: var(--text);
+  text-decoration: line-through;
 }
 
-#task-list-body tr.completed select {
-    background-color: #e5e8ea;
-
-    color: #89939b;
-
-    border-color: #d5dade;
+#task-list-body tr.completed:hover td {
+  background: var(--checked-hover);
 }
 
-
-/* ========================================
-   14. Dark mode
-   body.reverse
-======================================== */
-
-body.reverse {
-    background:
-        radial-gradient(circle at top left,
-            #253748 0,
-            transparent 38%),
-        linear-gradient(135deg,
-            #101820 0%,
-            #16232e 100%);
-
-    color: #dbe5ed;
+#task-list-body tr.completed .task-edit-input {
+  text-decoration: line-through;
 }
-
-
-/* タイトル */
-
-body.reverse h2 {
-    color: #e5edf3;
-
-    border-bottom-color: #c7ae87;
-}
-
-
-/* 入力フォーム全体 */
 
 body.reverse .list {
-    background-color: rgba(27, 41, 53, 0.9);
-
-    border-color: #344b5e;
-
-    box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.25);
+  background: #1b2935;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, .25);
 }
 
-
-/* 入力欄 */
-
-body.reverse .input-taskName,
-body.reverse .input-deadline,
-body.reverse .input-comment {
-    background-color: #22313e;
-    color: #e5edf3;
-
-    border-color: #40586b;
+body.reverse :is(.input-taskName, .input-deadline, .input-comment) {
+  background: #22313e;
 }
 
-body.reverse .input-taskName::placeholder,
-body.reverse .input-deadline::placeholder,
-body.reverse .input-comment::placeholder {
-    color: #8093a2;
+body.reverse :is(.input-taskName, .input-deadline, .input-comment):focus {
+  background: #263947;
 }
 
-body.reverse .input-taskName:focus,
-body.reverse .input-deadline:focus,
-body.reverse .input-comment:focus {
-    background-color: #263947;
-
-    border-color: #789ab3;
-
-    box-shadow:
-        0 0 0 3px rgba(120, 154, 179, 0.18);
+body.reverse .task-list {
+  background: #142431;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, .25);
 }
-
-
-/* 追加ボタン */
-
-body.reverse .button {
-    background-color: #668ba6;
-    color: #ffffff;
-}
-
-body.reverse .button:hover {
-    background-color: #789db7;
-}
-
-
-/* チェック済み削除ボタン */
 
 body.reverse .button-clear-completed {
-    background-color: #c8b28f;
-    color: #2c2821;
-
-    border-color: #d4c09f;
+  background: #c8b28f;
+  color: #2c2821;
 }
 
 body.reverse .button-clear-completed:hover {
-    background-color: #d6c3a3;
+  background: #d6c3a3;
 }
 
-
-/* 白黒反転ボタン */
-
 body.reverse .button-bw {
-    background-color: #263947;
-    color: #e6edf2;
-
-    border-color: #567186;
+  background: #263947;
+  color: #e6edf2;
 }
 
 body.reverse .button-bw:hover {
-    background-color: #324a5c;
+  background: #324a5c;
 }
 
-
-/* テーブル */
-
-body.reverse .task-list {
-    background-color: #1b2934;
-
-    border-color: #344b5e !important;
-
-    box-shadow:
-        0 12px 35px rgba(0, 0, 0, 0.25);
+body.reverse #task-list-body .task-edit-input {
+  color: inherit;
 }
-
-
-/* テーブルヘッダー */
-
-body.reverse .task-list-head {
-    background:
-        linear-gradient(135deg,
-            #243b4d,
-            #34566e);
-
-    color: #edf4f8;
-}
-
-
-/* テーブルのセル */
-
-body.reverse #task-list-body td {
-    background-color: #1c2b36;
-
-    color: #cbd7df;
-
-    border-bottom-color: #304350;
-}
-
-
-/* hover */
-
-body.reverse #task-list-body tr:hover td {
-    background-color: #263946;
-}
-
-
-/* チェックボックス */
-
-body.reverse #task-list-body input[type="checkbox"] {
-    accent-color: #7da1ba;
-}
-
-
-/* ========================================
-   15. Dark mode status
-======================================== */
-
-body.reverse select.status-unread {
-    background-color: #344653;
-    color: #d5dfe5;
-
-    border-color: #455d6d;
-}
-
-body.reverse select.status-pending {
-    background-color: #695c48;
-    color: #f1e3cc;
-
-    border-color: #85745b;
-}
-
-body.reverse select.status-in-progress {
-    background-color: #31566d;
-    color: #d9edf8;
-
-    border-color: #45728d;
-}
-
-body.reverse select.status-completed {
-    background-color: #34594f;
-    color: #d8eee8;
-
-    border-color: #477568;
-}
-
-
-/* ========================================
-   16. Dark mode completed
-======================================== */
-
-body.reverse #task-list-body tr.completed td {
-    background-color: #18242d;
-
-    color: #687985;
-
-    text-decoration: line-through;
-}
-
-body.reverse #task-list-body tr.completed select {
-    background-color: #273640;
-
-    color: #788994;
-
-    border-color: #3b4c57;
-}
-
-
-/* ========================================
-   17. Responsive
-======================================== */
 
 @media (max-width: 800px) {
-
-    body {
-        padding: 30px 20px;
-    }
-
-    h2 {
-        font-size: 23px;
-
-        flex-wrap: wrap;
-    }
-
-    .button-clear-completed {
-        margin-left: 0;
-    }
-
-    .list {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .list table,
-    .list tbody,
-    .list tr,
-    .list td {
-        display: block;
-
-        width: 100%;
-    }
-
-    .list td {
-        margin-bottom: 10px;
-    }
-
-    .button {
-        width: 100%;
-    }
-
-    .task-list {
-        font-size: 12px;
-    }
-
-    #task-list-body td,
-    .task-list-head th {
-        padding: 10px 7px;
-    }
-}
-
-/* ========================================
-   Smartphone
-   768px以下
-======================================== */
-
-@media (max-width: 768px) {
-
-  /* ---------- ページ全体 ---------- */
-
   body {
     padding: 24px 14px;
   }
 
-
-  /* ---------- タイトル ---------- */
-
   h2 {
-    width: 100%;
-    margin-bottom: 20px;
-
     font-size: 22px;
-
     flex-wrap: wrap;
     gap: 10px;
-  }
-
-
-  /* ---------- 上部ボタン ---------- */
-
-  .button-clear-completed,
-  .button-bw {
-    padding: 8px 12px;
-
-    font-size: 11px;
+    margin-bottom: 20px;
   }
 
   .button-clear-completed {
     margin-left: 0;
   }
 
-
-  /* ========================================
-     入力フォーム
-  ======================================== */
-
   .list {
-    display: block;
-
-    width: 100%;
-
+    flex-direction: column;
+    align-items: stretch;
     padding: 16px;
-
     border-radius: 12px;
   }
 
-
-  /* PCではtableだが、
-     スマホでは縦並びに変更 */
-
-  .list table,
-  .list tbody,
-  .list tr,
-  .list td {
+  .list :is(table, tbody, tr, td) {
     display: block;
-
     width: 100%;
   }
 
@@ -825,129 +422,56 @@ body.reverse #task-list-body tr.completed select {
     margin-bottom: 10px;
   }
 
-
-  /* ---------- 入力欄 ---------- */
-
-  .input-taskName,
-  .input-deadline,
-  .input-comment {
+  .button {
     width: 100%;
+    margin-top: 5px;
+  }
 
-    padding: 13px 14px;
-
+  :is(.input-taskName, .input-deadline, .input-comment) {
     font-size: 16px;
   }
 
-
-  /* ---------- Addボタン ---------- */
-
-  .button {
-    width: 100%;
-
-    margin-top: 5px;
-    padding: 13px;
-
-    font-size: 14px;
-  }
-
-
-  /* ========================================
-     Task table
-  ======================================== */
-
-  /*
-    テーブルの内容を無理やり縮めず、
-    スマホでは横スクロールさせる
-  */
-
   .task-list {
     display: block;
-
-    width: 100%;
-    min-width: 700px;
-
+    min-width: 950px;
     overflow-x: auto;
-
     border-radius: 12px;
   }
 
-
-  /* ---------- ヘッダー ---------- */
-
   .task-list-head th {
     padding: 12px 10px;
-
     font-size: 11px;
-
     white-space: nowrap;
   }
 
-
-  /* ---------- データ ---------- */
-
   #task-list-body td {
     padding: 13px 10px;
-
     font-size: 12px;
   }
-
-
-  /* task name */
 
   .task-list th:nth-child(2) {
     width: 180px !important;
   }
 
-
-  /* status */
-
   .task-list th:nth-child(3) {
     width: 150px !important;
   }
 
-
-  /* deadline */
-
   .task-list th:nth-child(4) {
-    width: 120px !important;
+    width: 12rem !important;
   }
-
-
-  /* comment */
 
   .task-list th:nth-child(5) {
     width: 250px !important;
   }
 
-
-  /* ---------- Status select ---------- */
-
   #task-list-body select {
     width: 125px;
-    max-width: 125px;
-
-    padding: 6px 8px;
-
     font-size: 11px;
-  }
-
-
-  /* ---------- checkbox ---------- */
-
-  #task-list-body input[type="checkbox"] {
-    width: 17px;
-    height: 17px;
   }
 }
 
-
-/* ========================================
-   Very small smartphone
-   iPhone SE等
-======================================== */
-
 @media (max-width: 400px) {
-
   body {
     padding: 18px 10px;
   }
@@ -960,10 +484,8 @@ body.reverse #task-list-body tr.completed select {
     padding: 13px;
   }
 
-  .button-clear-completed,
-  .button-bw {
+  :is(.button-clear-completed, .button-bw) {
     font-size: 10px;
-
     padding: 7px 9px;
   }
 }

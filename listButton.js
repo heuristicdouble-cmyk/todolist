@@ -12,9 +12,11 @@ function renderTask(task, index) {
   }
 
   const tdcheckbox = document.createElement("td");
-  const tdtaskName = document.createElement("td");
+
   const tdstatus = document.createElement("td");
   const tddeadline = document.createElement("td");
+
+  const tdtaskName = document.createElement("td");
   const tdcomment = document.createElement("td");
 
   // checkboxを追加する
@@ -33,7 +35,11 @@ function renderTask(task, index) {
   const statusOptions = [
     { value: "unread", text: "uncompleted", className: "status-unread" },
     { value: "pending", text: "in pending", className: "status-pending" },
-    { value: "in-progress", text: "in progress", className: "status-in-progress" },
+    {
+      value: "in-progress",
+      text: "in progress",
+      className: "status-in-progress",
+    },
     { value: "completed", text: "completed", className: "status-completed" },
   ];
 
@@ -72,10 +78,63 @@ function renderTask(task, index) {
   });
 
   tdcheckbox.appendChild(checkbox);
-  tdtaskName.textContent = task.taskName;
+
   tdstatus.appendChild(statusSelect);
-  tddeadline.textContent = task.deadline;
-  tdcomment.textContent = task.comment;
+
+  const inputTaskName = document.createElement("input");
+
+  inputTaskName.type = "text";
+  inputTaskName.value = task.taskName;
+  inputTaskName.classList.add("task-edit-input");
+
+  inputTaskName.addEventListener("change", () => {
+    const newName = inputTaskName.value.trim();
+
+    // 空欄は禁止
+    if (newName === "") {
+      inputTaskName.value = tasks[index].taskName;
+      return;
+    }
+
+    tasks[index].taskName = newName;
+
+    localStorage.setItem("todoList", JSON.stringify(tasks));
+  });
+
+  tdtaskName.appendChild(inputTaskName);
+
+  const inputComment = document.createElement("input");
+
+  inputComment.type = "text";
+  inputComment.value = task.comment ?? "";
+  inputComment.classList.add("task-edit-input");
+
+  inputComment.addEventListener("change", () => {
+    tasks[index].comment = inputComment.value;
+
+    localStorage.setItem("todoList", JSON.stringify(tasks));
+  });
+
+  tdcomment.appendChild(inputComment);
+
+  const inputDeadline = document.createElement("input");
+
+  inputDeadline.type = "date";
+  inputDeadline.value = task.deadline ?? "";
+  inputDeadline.classList.add("task-edit-input");
+
+  inputDeadline.addEventListener("change", () => {
+    // Deadlineの更新
+    tasks[index].deadline = inputDeadline.value;
+
+    // ソートして再描画
+    loadTasks();
+
+    // LocalStorageに保存
+    localStorage.setItem("todoList", JSON.stringify(tasks));
+  });
+
+  tddeadline.appendChild(inputDeadline);
 
   tr.appendChild(tdcheckbox);
   tr.appendChild(tdtaskName);
@@ -88,8 +147,13 @@ function renderTask(task, index) {
 
 //ページ読み込み時に保存されている全タスクを描画する
 function loadTasks() {
-  taskListBody.innerHTML = ""; // 描画前にテーブルをリセット
-  tasks.forEach((task, index) => renderTask(task, index));
+  sortTasksByDeadline();
+
+  taskListBody.innerHTML = "";
+
+  tasks.forEach((task, index) => {
+    renderTask(task, index);
+  });
 }
 
 // 初期実行
@@ -139,3 +203,13 @@ const buttonReverse = document.querySelector(".button-bw");
 buttonReverse.addEventListener("click", () => {
   document.body.classList.toggle("reverse");
 });
+
+function sortTasksByDeadline() {
+  tasks.sort((a, b) => {
+    // 未設定のDeadlineは最後に配置
+    if (!a.deadline) return 1;
+    if (!b.deadline) return -1;
+
+    return a.deadline.localeCompare(b.deadline);
+  });
+}
